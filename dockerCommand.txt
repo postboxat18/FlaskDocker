@@ -1,0 +1,41 @@
+**INSTALLATION**
+sudo apt-get update
+sudo apt-get install ca-certificates curl gnupg lsb-release
+sudo mkdir -p /etc/apt/keyrings
+curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo gpg --dearmor -o /etc/apt/keyrings/docker.gpg
+echo "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.gpg] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable" | sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
+sudo apt update
+sudo apt-get install docker-ce docker-ce-cli containerd.io docker-compose-plugin
+
+
+**DELETION**
+sudo apt-get purge docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin docker-ce-rootless-extras
+sudo rm -rf /var/lib/docker
+sudo rm -rf /var/lib/containerd
+
+
+**USE WITHOUT SUDO**
+sudo groupadd docker	
+sudo gpasswd -a $USER docker
+newgrp docker
+
+
+
+
+**COMMAND**
+docker -v									- docker version
+docker images									- images list
+docker ps 									- running container list
+docker ps -a									- running and exicted container list
+docker compose up -d --build 							- rebuild image
+docker restart CONTAINERNAME							- restart container
+docker inspect CONTAINERNE/IMAGENAME						- check container/images ENV
+docker run -d --name CONTAINERNAME IMAGENAME					- run container
+docker run -d --name flaskDemo -p 4000:5000 flaskdemo-app			- run container using port
+docker run -d --name Demoflask flaskdemo-app sleep 5				- run container after sleep 5 seconds
+docker run -d -v ACTPATH:TARPATH --name flaskDemo flaskdemo-app			- run container add mount path SOURCE and DESIGNATION
+docker run -d -e appColor:blue --name DemoFlask flaskdemo-app			- run container change env params
+
+
+
+
